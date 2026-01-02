@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "seed:db": "bun run astro db execute db/seed.ts --remote",
+    "update:schemadb": "astro db push --remote --force-reset"
   },
   "dependencies": {
     "@astrojs/db": "^0.18.3",
