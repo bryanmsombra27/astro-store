@@ -15,8 +15,11 @@ const { data, error } = await Astro.callAction(actions.getProductsByPage, {
 if (error) {
   return Astro.redirect("/");
 }
-
 const { products, totalPages } = data;
+
+if (data.products.length === 0) {
+  return Astro.redirect(`/?page=${totalPages}`);
+}
 ---
 
 <MainLayout>
