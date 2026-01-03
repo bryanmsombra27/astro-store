@@ -13,11 +13,17 @@
   "dependencies": {
     "@astrojs/db": "^0.18.3",
     "@astrojs/netlify": "^6.6.3",
+    "@astrojs/react": "^4.4.2",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "astro": "^5.16.6",
     "auth-astro": "^4.2.0",
     "bcryptjs": "^3.0.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "sweetalert2": "^11.26.17",
+    "swiper": "^12.0.3",
     "tailwindcss": "^4.1.18",
     "uuid": "^13.0.0"
   }
