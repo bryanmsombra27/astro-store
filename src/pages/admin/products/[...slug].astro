@@ -23,7 +23,10 @@ const { images, product } = data;
     >← Volver</a
   >
 
-  <form class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <form
+    class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+    enctype="multipart/form-data"
+  >
     <input
       type="hidden"
       id="id"
@@ -345,6 +348,7 @@ const { images, product } = data;
       const { data, error } = await actions.createUpdateProduct(formData);
 
       if (error) {
+        console.log(error, "ERORR");
         return Swal.fire({
           icon: "error",
           title: "Error al actualizar",
