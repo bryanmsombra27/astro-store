@@ -4,8 +4,6 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import { Formatter } from "@/utils/format-currency";
 import { actions } from "astro:actions";
 
-const cart = Astro.cookies.get("cart");
-
 const { data: products, error } = await Astro.callAction(
   actions.loadProductsFromCart,
   {}
@@ -92,6 +90,7 @@ const total = products.reduce(
       </div>
 
       <button
+        id="checkout"
         class="mt-10 w-full bg-blue-700 text-gray-300 py-3 rounded-lg hover:bg-gray-600 transition-all"
       >
         PAGAR
@@ -122,5 +121,27 @@ const total = products.reduce(
         navigate("/cart");
       })
     );
+  });
+</script>
+
+<script>
+  import { CartCookiesClient } from "@/utils/cart-cookies";
+  import { actions } from "astro:actions";
+
+  const button = document.getElementById("checkout") as HTMLButtonElement;
+
+  button.addEventListener("click", async () => {
+    const { data: products, error } = await actions.loadProductsFromCart();
+
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      body: JSON.stringify(products),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { url } = await res.json();
+    window.location.href = url;
   });
 </script>
